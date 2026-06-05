@@ -84,3 +84,58 @@ button {
   <h2>Will you go out on a date with me? 💖</h2>
 
   <button id="yes" onclick="yes()">Yes 💕</button>
+  <button id="no" onmouseover="move()">No 😢</button>
+</div>
+
+<script>
+
+/* Typing effect */
+let text = "Hey Baby 💙";
+let i = 0;
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 80);
+  }
+}
+typeWriter();
+
+/* YES clicked */
+function yes() {
+  document.body.innerHTML = `
+    <div style="text-align:center;margin-top:20%;">
+      <h1>YAYYY 🎉💖</h1>
+      <h2>This made my day 😄</h2>
+      <p>Get ready for an amazing date ✨</p>
+    </div>
+  `;
+  startHearts();
+}
+
+/* Move NO button */
+function move() {
+  let btn = document.getElementById("no");
+  let x = Math.random() * 300 - 150;
+  let y = Math.random() * 150 - 75;
+  btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+/* Hearts animation */
+function startHearts() {
+  setInterval(() => {
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
