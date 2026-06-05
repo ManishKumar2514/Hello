@@ -29,11 +29,18 @@ body {
   animation: fadeIn 1.5s ease;
 }
 
-h1 { font-size: 2.5rem; }
+h1 { font-size: 2.5rem; margin-bottom: 10px; }
 h2 { margin-top: 15px; }
 
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+
 button {
-  margin: 15px;
   padding: 12px 25px;
   border: none;
   border-radius: 12px;
@@ -62,7 +69,7 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* hearts */
+/* Hearts animation */
 .heart {
   position: absolute;
   color: #ff6b81;
@@ -70,72 +77,3 @@ button {
 }
 
 @keyframes float {
-  from { transform: translateY(100vh); opacity: 1; }
-  to { transform: translateY(-10vh); opacity: 0; }
-}
-</style>
-</head>
-
-<body>
-
-<div class="card">
-  <h1 id="typing"></h1>
-  <p>I made something just for you ✨</p>
-  <h2>Will you go out on a date with me? 💖</h2>
-
-  <button id="yes" onclick="yes()">Yes 💕</button>
-  <button id="no" onmouseover="move()">No 😢</button>
-</div>
-
-<script>
-
-/* Typing effect */
-let text = "Hey Baby 💙";
-let i = 0;
-
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 80);
-  }
-}
-typeWriter();
-
-/* YES clicked */
-function yes() {
-  document.body.innerHTML = `
-    <div style="text-align:center;margin-top:20%;">
-      <h1>YAYYY 🎉💖</h1>
-      <h2>This made my day 😄</h2>
-      <p>Get ready for an amazing date ✨</p>
-    </div>
-  `;
-  startHearts();
-}
-
-/* Move NO button */
-function move() {
-  let btn = document.getElementById("no");
-  let x = Math.random() * 300 - 150;
-  let y = Math.random() * 150 - 75;
-  btn.style.transform = `translate(${x}px, ${y}px)`;
-}
-
-/* Hearts animation */
-function startHearts() {
-  setInterval(() => {
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-  }, 300);
-}
-</script>
-
-</body>
-</html>
